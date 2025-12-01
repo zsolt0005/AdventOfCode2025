@@ -1,12 +1,12 @@
 import kotlin.math.abs
 
-class Day01 {
+class Day01: IDay {
     private val lines: List<String> = FileUtils.readLines("Day01.txt")
 
     private val minPosition = 0
     private val maxPosition = 99
 
-    fun partOne()
+    override fun partOne()
     {
         var password = 0
 
@@ -22,7 +22,7 @@ class Day01 {
         println("   Password: $password")
     }
 
-    fun partTwo()
+    override fun partTwo()
     {
         var result: Pair<Int, Int> = Pair(50, 0)
 
@@ -36,7 +36,7 @@ class Day01 {
         println("   Password: ${result.second}")
     }
 
-    fun rotatePart1(current: Int, amount: Int, isRight: Boolean): Int {
+    private fun rotatePart1(current: Int, amount: Int, isRight: Boolean): Int {
         var realAmount = if(amount >= (maxPosition + 1)) amount % (maxPosition + 1) else amount
         realAmount = if (isRight) realAmount else -realAmount
 
@@ -46,7 +46,7 @@ class Day01 {
         return current + realAmount
     }
 
-    fun rotatePart2(current: Int, password: Int, amount: Int, isRight: Boolean): Pair<Int, Int> {
+    private fun rotatePart2(current: Int, password: Int, amount: Int, isRight: Boolean): Pair<Int, Int> {
         var (realAmount, turns) =
             if(amount >= (maxPosition + 1)) Pair(amount % (maxPosition + 1), amount / (maxPosition + 1))
             else Pair(amount, 0)
